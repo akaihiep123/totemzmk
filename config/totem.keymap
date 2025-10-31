@@ -11,6 +11,7 @@
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
 #define BASE 0
@@ -29,20 +30,11 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_esc {
-            timeout-ms = <50>;
-            key-positions = <0 1>;
-            bindings = <&kp TAB>;
-        };
-
-        Win {
-            bindings = <&kp LEFT_WIN>;
-            key-positions = <13 14>;
-        };
-
-        delete {
-            bindings = <&kp DELETE>;
+        word_delete {
+            bindings = <&kp LC(DELETE)>;
             key-positions = <8 9>;
+            timeout-ms = <0>;
+            layers = <0>;
         };
     };
 
@@ -85,41 +77,55 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-                  &kp Q  &kp W  &kp E      &kp R               &kp T           &kp Y      &kp U      &kp I      &kp O    &kp P
-                  &kp A  &kp S  &kp D      &mt LEFT_CONTROL F  &kp G           &kp H      &kp J      &kp K      &kp L    &kp SEMICOLON
-&kp LEFT_CONTROL  &kp Z  &kp X  &kp C      &kp V               &kp B           &kp N      &kp M      &kp COMMA  &kp DOT  &kp FSLH       &kp FSLH
-                                &kp LSHFT  &kp SPACE           &kp LEFT_ALT    &lt 0 RET  &kp ENTER  &kp BSPC
+       &kp Q  &kp W           &kp E               &kp R             &kp T      &kp Y      &kp U             &kp I               &kp O           &kp P
+       &kp A  &mt LEFT_ALT S  &mt LEFT_CONTROL D  &mt LEFT_SHIFT F  &kp G      &kp H      &mt LEFT_SHIFT J  &mt LEFT_CONTROL K  &mt LEFT_ALT L  &kp SEMICOLON
+&none  &kp Z  &kp X           &kp C               &kp V             &kp B      &kp N      &kp M             &kp COMMA           &kp DOT         &kp FSLH       &none
+                              &lt 5 ESCAPE        &lt 1 SPACE       &kp TAB    &lt 4 RET  &lt 2 BACKSPACE   &lt 3 DELETE
             >;
         };
 
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-        layer_4 {
+        Nav {
             bindings = <
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+        &trans    &trans    &trans     &trans     &trans    &kp K_REDO  &kp K_PASTE     &kp K_COPY   &kp K_CUT      &kp K_UNDO
+        &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans    &kp CLCK    &kp LEFT_ARROW  &kp DOWN     &kp UP_ARROW   &kp RIGHT
+&trans  &trans    &trans    &trans     &trans     &trans    &kp INS     &kp HOME        &kp PAGE_UP  &kp PAGE_DOWN  &kp END     &trans
+                            &trans     &trans     &trans    &kp ENTER   &kp BACKSPACE   &kp DEL
             >;
         };
 
-        layer_2 {
+        number {
             bindings = <
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+     &kp LEFT_BRACKET  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp RIGHT_BRACKET    &kp  &kp        &kp        &kp       &kp
+     &kp SEMICOLON     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp EQUAL            &kp  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
+&kp  &kp TILDE         &kp N7        &kp N8        &kp N9        &kp BACKSLASH        &kp  &kp        &kp        &kp       &kp       &kp
+                                     &kp DOT       &kp N0        &kp MINUS            &kp  &kp        &kp
             >;
         };
 
-        layer_3 {
+        func {
             bindings = <
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+        &kp F10  &kp F7  &kp F8  &kp F9     &kp PRINTSCREEN    &trans  &trans     &trans     &trans    &trans
+        &kp F11  &kp F4  &kp F5  &kp F6     &kp SCROLLLOCK     &trans  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
+&trans  &kp F12  &kp F1  &kp F2  &kp F3     &kp PAUSE_BREAK    &trans  &trans     &trans     &trans    &trans    &trans
+                         &trans  &kp SPACE  &kp TAB            &trans  &trans     &trans
+            >;
+        };
+
+        symbol {
+            bindings = <
+     &kp LEFT_BRACE  &kp EXCL       &kp AT                &kp HASH               &kp RIGHT_BRACE    &kp  &kp        &kp        &kp       &kp
+     &kp COLON       &kp DOLLAR     &kp PERCENT           &kp CARET              &kp PLUS           &kp  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
+&kp  &kp TILDE       &kp AMPERSAND  &kp ASTERISK          &kp LEFT_PARENTHESIS   &kp PIPE           &kp  &kp        &kp        &kp       &kp       &kp
+                                    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER          &kp  &kp        &kp
+            >;
+        };
+
+        media {
+            bindings = <
+        &trans    &trans    &trans     &trans     &trans    &bt BT_CLR_ALL  &trans            &trans             &trans           &trans
+        &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans    &trans          &kp K_NEXT        &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp K_FORWARD
+&trans  &trans    &trans    &trans     &trans     &trans    &bt BT_CLR      &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3   &bt BT_SEL 4
+                            &trans     &trans     &trans    &kp K_STOP      &kp K_PLAY_PAUSE  &kp K_MUTE
             >;
         };
     };
