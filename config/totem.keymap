@@ -95,10 +95,10 @@
 
         number {
             bindings = <
-     &kp LEFT_BRACKET  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp RIGHT_BRACKET    &kp  &kp        &kp        &kp       &kp
-     &kp SEMICOLON     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp EQUAL            &kp  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
-&kp  &kp TILDE         &kp N7        &kp N8        &kp N9        &kp BACKSLASH        &kp  &kp        &kp        &kp       &kp       &kp
-                                     &kp DOT       &kp N0        &kp MINUS            &kp  &kp        &kp
+        &kp LEFT_BRACKET  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp RIGHT_BRACKET    &trans  &trans     &trans     &trans    &trans
+        &kp SEMICOLON     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp EQUAL            &trans  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
+&trans  &kp TILDE         &kp N7        &kp N8        &kp N9        &kp BACKSLASH        &trans  &trans     &trans     &trans    &trans    &trans
+                                        &kp DOT       &kp N0        &kp MINUS            &trans  &trans     &trans
             >;
         };
 
@@ -113,10 +113,10 @@
 
         symbol {
             bindings = <
-     &kp LEFT_BRACE  &kp EXCL       &kp AT                &kp HASH               &kp RIGHT_BRACE    &kp  &kp        &kp        &kp       &kp
-     &kp COLON       &kp DOLLAR     &kp PERCENT           &kp CARET              &kp PLUS           &kp  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
-&kp  &kp TILDE       &kp AMPERSAND  &kp ASTERISK          &kp LEFT_PARENTHESIS   &kp PIPE           &kp  &kp        &kp        &kp       &kp       &kp
-                                    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER          &kp  &kp        &kp
+        &kp LEFT_BRACE  &kp EXCL       &kp AT                &kp HASH               &kp RIGHT_BRACE    &trans  &trans     &trans     &trans    &trans
+        &kp COLON       &kp DOLLAR     &kp PERCENT           &kp CARET              &kp PLUS           &trans  &kp LSHFT  &kp LCTRL  &kp LALT  &kp LGUI
+&trans  &kp TILDE       &kp AMPERSAND  &kp ASTERISK          &kp LEFT_PARENTHESIS   &kp PIPE           &trans  &trans     &trans     &trans    &trans    &trans
+                                       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER          &trans  &trans     &trans
             >;
         };
 
